@@ -1,0 +1,280 @@
+/* Variables */
+:root {
+    --toast-success: #4caf50;
+    --toast-error: #f44336;
+    --toast-info: #2196f3;
+    --toast-warning: #ff9800;
+    --animation-speed: 0.3s;
+}
+
+/* Toast notifications */
+.toast {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(110%);
+    transition: transform var(--animation-speed) ease-out;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.success {
+    background: var(--toast-success);
+}
+
+.toast.error {
+    background: var(--toast-error);
+}
+
+.toast.info {
+    background: var(--toast-info);
+}
+
+.toast.warning {
+    background: var(--toast-warning);
+}
+
+/* Notification items */
+.notification-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.notification-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gray);
+    transition: background var(--animation-speed);
+}
+
+.notification-item.error::before {
+    background: var(--danger);
+}
+
+.notification-item.warning::before {
+    background: var(--warning);
+}
+
+.notification-item.info::before {
+    background: var(--info);
+}
+
+.notification-item.read {
+    opacity: 0.7;
+}
+
+.notification-item.read::before {
+    opacity: 0.5;
+}
+
+/* Hover effects */
+.notification-item:hover {
+    transform: translateX(5px);
+    background: var(--gray-light);
+}
+
+.notification-item:hover .notification-actions {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification-actions {
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all var(--animation-speed);
+}
+
+/* Modal animations */
+.notification-modal {
+    backdrop-filter: blur(4px);
+    transition: opacity var(--animation-speed);
+}
+
+.notification-modal-content {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all var(--animation-speed);
+}
+
+.notification-modal.show .notification-modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Filter buttons */
+.filter-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease-out, height 0.6s ease-out;
+}
+
+.filter-button:hover::after {
+    width: 200%;
+    height: 200%;
+}
+
+.filter-button .badge {
+    transition: all var(--animation-speed);
+}
+
+.filter-button:hover .badge {
+    transform: scale(1.1);
+    background: var(--primary);
+    color: white;
+}
+
+/* Empty state animations */
+.empty-state i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+/* Loading state */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.loading::after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--gray-light);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Notification detail animations */
+.notification-detail {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .notifications-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    .notification-filters {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+    
+    .filter-button {
+        white-space: nowrap;
+    }
+    
+    .toast {
+        width: calc(100% - 2rem);
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --white: #1a1a1a;
+        --gray-light: #2d2d2d;
+        --gray: #888;
+    }
+    
+    .notification-item {
+        border-color: #333;
+    }
+    
+    .notification-title {
+        color: #fff;
+    }
+    
+    .notification-message {
+        color: #ddd;
+    }
+    
+    .notification-time {
+        color: #888;
+    }
+    
+    .filter-button {
+        color: #ddd;
+    }
+    
+    .filter-button:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    
+    .empty-state {
+        color: #888;
+    }
+    
+    .notification-modal-content {
+        background: #1a1a1a;
+        border: 1px solid #333;
+    }
+} 

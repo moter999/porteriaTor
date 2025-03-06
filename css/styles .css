@@ -1,0 +1,67 @@
+/* Estilo general del body */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4; /* Color de fondo */
+    transition: background-color 0.5s ease; /* Transición para el color de fondo */
+}
+
+/* Panel principal */
+.panel {
+    padding: 20px;
+    border: 2px solid #007BFF; /* Color del borde */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: white; /* Color de fondo del panel */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+}
+
+/* Contenedor de opciones */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre las opciones */
+}
+
+/* Estilo de las opciones */
+.option {
+    width: 200px; /* Ancho de las opciones */
+    height: 100px; /* Altura de las opciones */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007BFF; /* Color de fondo de las opciones */
+    color: white; /* Color del texto */
+    font-size: 24px; /* Tamaño del texto */
+    text-align: center; /* Alineación del texto */
+    border-radius: 10px; /* Bordes redondeados en las opciones */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave al cambiar el color y el tamaño */
+}
+
+/* Efecto al pasar el cursor sobre las opciones */
+.option:hover {
+    background-color: #0056b3; /* Color al pasar el cursor por encima */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el cursor */
+}
+
+/* Estilo para inputs (si se utilizan en otras partes) */
+input {
+    border-radius: 5px; /* Bordes redondeados en inputs */
+}
+
+/* Estilo para botones (si se utilizan en otras partes) */
+button {
+    border-radius: 5px; /* Bordes redondeados en botones */
+}
+
+/* Estilo para imágenes (si se utilizan en otras partes) */
+img {
+    transition: transform 0.3s ease; /* Transición para imágenes */
+}
+
+img:hover {
+    transform: scale(1.1); /* Aumentar tamaño de las imágenes al pasar el mouse */
+}
